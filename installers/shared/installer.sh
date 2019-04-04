@@ -2,12 +2,6 @@
 
 declare -a _installers=()
 
-_current_dir="${BASH_SOURCE%/*}"
-
-dotfiles_location() {
-  echo $(cd $_current_dir/../.. && pwd)
-}
-
 array_contains() {
   local n=$#
   local value=${!n}
@@ -33,8 +27,9 @@ require_installer() {
   fi
 
   if [[ $(array_contains "${_installers[@]}" "${name}_installer") == "f" ]]; then
+    log_header "installing $name"
     source $path
-    log_success "done."
+    log_success "complete."
 
     _installers+="${name}_installer"
   else
