@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+clone_oh_my_zsh() {
+  git_clone git@github.com:robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+}
+
+clone_oh_my_zsh
+symlink_dotfile zshrc ~/.zshrc
