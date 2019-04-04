@@ -8,6 +8,8 @@ then
   source "$shared_dir/brew.sh"
   source "$shared_dir/installer.sh"
   source "$shared_dir/log.sh"
+  source "$shared_dir/filesystem.sh"
+  source "$shared_dir/git.sh"
 
   SOURCED_SHARED_DOTFILES="t"
 fi
