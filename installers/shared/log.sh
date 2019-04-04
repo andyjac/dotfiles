@@ -29,14 +29,21 @@ LOG_LEVEL=${LOG_LEVEL-$INFO}
 log_message() {
   message=$1
   level=${2-$DEFAULT}
+  prefix=${3-"-> "}
 
-  echo -e "${level}${message}${RESET}"
+  echo -e "${level}${prefix}${message}${RESET}"
+}
+
+log_header() {
+  message=$1
+
+  log_message "$message" "$CYAN" "===> "
 }
 
 log_success() {
   message=$1
 
-  log_message "$message" "$LIGHT_GREEN"
+  log_message "$message" "$GREEN"
 }
 
 log_debug() {
@@ -59,7 +66,7 @@ log_warning() {
   message=$1
 
   if [[ $LOG_LEVEL -ge $WARNING ]]; then
-    log_message "$message" "$LIGHT_YELLOW"
+    log_message "$message" "$YELLOW"
   fi
 }
 
@@ -67,6 +74,6 @@ log_error() {
   message=$1
 
   if [[ $LOG_LEVEL -ge $ERROR ]]; then
-    log_message "$message" "$LIGHT_RED"
+    log_message "$message" "$RED"
   fi
 }
