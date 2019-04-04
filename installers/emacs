@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 
 # install emacs-plus: https://github.com/d12frosted/homebrew-emacs-plus
-log_info "tapping emacs-plus..."
-# brew_tap d12frosted/emacs-plus
-log_info "installing emacs-plus..."
-# brew_install emacs-plus --without-spacemacs-icon
+log_message "tapping emacs-plus..."
+brew_tap d12frosted/emacs-plus
 
-# don't clobber existing emacs config
-if [[ -e ~/.emacs.d ]]; then
-  log_debug "found existing ~/.emacs.d file. renaming to ~/.emacs.d.old"
-  mv ~/.emacs.d ~/.emacs.d.old
-fi
+log_message "installing emacs-plus..."
+brew_install emacs-plus --without-spacemacs-icon
 
-# link emacs.d on local system
-ln -s "$(dotfiles_location)/emacs.d" ~/.emacs.d
+symlink_dotfile emacs.d ~/.emacs.d
