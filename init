@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+source "${BASH_SOURCE%/*}/installers/shared.sh"
+
+while test $# -gt 0; do
+  case "$1" in
+    --debug)
+      LOG_LEVEL=$DEBUG
+
+      shift
+      ;;
+    --log-level*)
+      LEVEL=`echo $1 | sed -e 's/^[^=]*=//g'`
+
+      if [[ $LEVEL -ge $ERROR ]] && [[ $LEVEL -le $DEBUG ]]; then
+        LOG_LEVEL=$LEVEL
+      fi
+
+      shift
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+# is_macos && ./macos.sh
+
+require_installer emacs
+
+log_success "dotfiles installation complete."
