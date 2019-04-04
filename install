@@ -26,6 +26,7 @@ done
 
 # is_macos && ./macos.sh
 
-require_installer emacs
+# require_installer emacs
+require_installer zsh
 
 log_success "dotfiles installation complete."
