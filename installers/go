@@ -2,6 +2,8 @@
 
 source "${BASH_SOURCE%/*}/shared.sh"
 
+require_installer package-manager
+
 install_go() {
   if ! which go > /dev/null 2>&1; then
     if [ ! -d ~/go ]; then
