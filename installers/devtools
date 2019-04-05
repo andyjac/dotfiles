@@ -14,25 +14,25 @@ brew_install cmake
 install_cquery() {
   if which cmake > /dev/null 2>&1; then
     if ! which cquery > /dev/null 2>&1; then
-      log_message "installing cquery..."
+      log_install_package "cquery"
 
-      # git_clone --recursive https://github.com/cquery-project/cquery.git .cquery
-      # pushd .cquery
+      git_clone --recursive https://github.com/cquery-project/cquery.git .cquery
+      pushd .cquery
 
-      # git submodule update --init
-      # mkdir build
-      # pushd build
+      git submodule update --init
+      mkdir build
+      pushd build
 
-      # cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
-      # cmake --build .
-      # sudo cmake --build . --target install
+      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
+      cmake --build .
+      sudo cmake --build . --target install
 
-      # popd
-      # popd
+      popd
+      popd
 
-      # rm -rf .cquery
+      rm -rf .cquery
     else
-      log_message "cquery already installed. skipping..."
+      log_package_not_needed "cquery"
     fi
   else
     log_warning "cmake not installed. skipping..."

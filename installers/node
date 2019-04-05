@@ -12,13 +12,13 @@ source_nvm() {
 
 install_nvm() {
   if [ ! -d ~/.nvm ]; then
-    log_info "installing nvm..."
+    log_install_package "nvm"
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
     source_nvm
     nvm install stable
   else
-    log_message "nvm already installed. skipping..."
+    log_package_not_needed "nvm"
   fi
 }
 

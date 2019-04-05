@@ -29,7 +29,7 @@ LOG_LEVEL=${LOG_LEVEL-$INFO}
 log_message() {
   message=$1
   level=${2-$DEFAULT}
-  prefix=${3-"> "}
+  prefix=${3-"... "}
 
   echo -e "${level}${prefix}${message}${RESET}"
 }
@@ -43,7 +43,18 @@ log_header() {
 log_success() {
   message=$1
 
-  log_message "$message" "$GREEN"
+  log_message "$message" "$GREEN" "==> "
+}
+
+log_install_package() {
+  package=$1
+  log_message "install: ${LIGHT_MAGENTA}${package}${RESET}"
+}
+
+log_package_not_needed() {
+  package=$1
+
+  log_message "found package: ${LIGHT_MAGENTA}${package}${RESET}"
 }
 
 log_debug() {

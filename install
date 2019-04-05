@@ -2,6 +2,8 @@
 
 source "${BASH_SOURCE%/*}/installers/shared.sh"
 
+# declare -a _excluded_installers=()
+
 while test $# -gt 0; do
   case "$1" in
     --debug)
@@ -10,11 +12,17 @@ while test $# -gt 0; do
       shift
       ;;
     --log-level*)
-      LEVEL=`echo $1 | sed -e 's/^[^=]*=//g'`
+      level=`echo $1 | sed -e 's/^[^=]*=//g'`
 
-      if [[ $LEVEL -ge $ERROR ]] && [[ $LEVEL -le $DEBUG ]]; then
-        LOG_LEVEL=$LEVEL
+      if [[ $level -ge $ERROR ]] && [[ $level -le $DEBUG ]]; then
+        LOG_LEVEL=$level
       fi
+
+      shift
+      ;;
+    --without*)
+      name=`echo $1 | sed -e 's/^[^=]*=//g'`
+      _excluded_installers+=("${name}_installer")
 
       shift
       ;;

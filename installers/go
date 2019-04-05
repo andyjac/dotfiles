@@ -3,7 +3,7 @@
 source "${BASH_SOURCE%/*}/shared.sh"
 
 install_go() {
-  if ! which go; then
+  if ! which go > /dev/null 2>&1; then
     if [ ! -d ~/go ]; then
       mkdir ~/go
     fi
@@ -19,17 +19,22 @@ install_go() {
 
     brew_install go
   else
-    log_message "go already installed. skipping..."
+    log_package_not_needed "go"
   fi
 }
 
 install_go_packages() {
-  if ! which go; then
+  if ! which go > /dev/null 2>&1; then
     install_go
   fi
 
+  log_install_package "goimports"
   go get -u golang.org/x/tools/cmd/goimports
+
+  log_install_package "gocode"
   go get -u github.com/nsf/gocode
+
+  log_install_package "guru"
   go get -u golang.org/x/tools/cmd/guru
 }
 

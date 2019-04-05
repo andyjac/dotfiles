@@ -5,9 +5,9 @@ git_clone() {
   dest=$2
 
   if [ $(file_exists $dest) == "t" ]; then
-    log_message "repo $repo exists. skipping..."
+    log_package_not_needed $repo
   else
-    log_info "cloning $repo into $dest..."
+    log_install_package $repo
     git clone repo $dest
   fi
 }

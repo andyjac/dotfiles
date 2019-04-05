@@ -6,11 +6,12 @@ require_installer package-manager
 
 if ! brew list emacs-plus > /dev/null 2>&1; then
   # install emacs-plus: https://github.com/d12frosted/homebrew-emacs-plus
-  log_message "tapping emacs-plus..."
   brew_tap d12frosted/emacs-plus
 
-  log_message "installing emacs-plus..."
+  log_install_package "emacs-plus"
   brew_install emacs-plus --without-spacemacs-icon
+else
+  log_package_not_needed "emacs-plus"
 fi
 
 symlink_dotfile emacs.d ~/.emacs.d
