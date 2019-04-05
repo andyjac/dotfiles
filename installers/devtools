@@ -3,3 +3,43 @@
 source "${BASH_SOURCE%/*}/shared.sh"
 
 require_installer package-manager
+
+# install ag (aka 'the silver searcher')
+brew_install ag
+
+# install cmake
+brew_install cmake
+
+# install cquery
+install_cquery() {
+  if which cmake > /dev/null 2>&1; then
+    if ! which cquery > /dev/null 2>&1; then
+      log_message "installing cquery..."
+
+      # git_clone --recursive https://github.com/cquery-project/cquery.git .cquery
+      # pushd .cquery
+
+      # git submodule update --init
+      # mkdir build
+      # pushd build
+
+      # cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
+      # cmake --build .
+      # sudo cmake --build . --target install
+
+      # popd
+      # popd
+
+      # rm -rf .cquery
+    else
+      log_message "cquery already installed. skipping..."
+    fi
+  else
+    log_warning "cmake not installed. skipping..."
+  fi
+}
+
+install_cquery
+
+# install fuzzy find history searcher
+brew_install fzf
