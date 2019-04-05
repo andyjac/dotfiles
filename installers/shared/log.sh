@@ -29,7 +29,7 @@ LOG_LEVEL=${LOG_LEVEL-$INFO}
 log_message() {
   message=$1
   level=${2-$DEFAULT}
-  prefix=${3-"-> "}
+  prefix=${3-"> "}
 
   echo -e "${level}${prefix}${message}${RESET}"
 }
@@ -37,7 +37,7 @@ log_message() {
 log_header() {
   message=$1
 
-  log_message "$message" "$CYAN" "===> "
+  log_message "$message" "$CYAN" "==> "
 }
 
 log_success() {

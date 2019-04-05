@@ -28,5 +28,6 @@ done
 
 require_installer emacs
 require_installer zsh
+require_installer node
 
 log_success "dotfiles installation complete."
