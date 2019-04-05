@@ -5,7 +5,7 @@ git_clone() {
   dest=$2
 
   if [ $(file_exists $dest) == "t" ]; then
-    log_info "repo $repo exists. skipping..."
+    log_message "repo $repo exists. skipping..."
   else
     log_info "cloning $repo into $dest..."
     git clone repo $dest

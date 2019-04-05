@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source "${BASH_SOURCE%/*}/shared.sh"
+
 clone_oh_my_zsh() {
   git_clone git@github.com:robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 }

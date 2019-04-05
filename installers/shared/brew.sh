@@ -14,9 +14,9 @@ brew_install() {
   ! is_macos && return 1
 
   if brew list "$package" > /dev/null 2>&1; then
-    log_info "$package already installed. skipping..."
+    log_message "$package already installed. skipping..."
   else
-    log_info "installing $package..."
+    log_message "installing $package..."
     brew install $@ > /dev/null 2>&1
   fi
 }

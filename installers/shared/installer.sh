@@ -2,36 +2,38 @@
 
 declare -a _installers=()
 
-array_contains() {
-  local n=$#
-  local value=${!n}
+array_contains () {
+    local array="$1[@]"
+    local seeking=$2
+    local in=1
 
-  for ((i = 1 ; i < $# ; i++)) do
-    if [[ "${!i}" == "${value}" ]]; then
-      echo "t"
-      return 0
-    fi
-  done
+    for element in "${!array}"; do
+      if [[ $element == $seeking ]]; then
+        in=0
+        break
+      fi
+    done
 
-  echo "f"
-  return 1
+    return $in
 }
 
 require_installer() {
   local name=$1
   local path="$(dotfiles_location)/installers/$name"
 
-  if [[ ! -e $path ]]; then
+  if [ ! -e $path ]; then
     log_warning "installer '$name' does not exist. skipping..."
     return 1
   fi
 
-  if [[ $(array_contains "${_installers[@]}" "${name}_installer") == "f" ]]; then
-    log_header "installing $name"
-    source $path
-    log_success "complete."
+  log_debug "installers: ${_installers[@]}"
 
-    _installers+="${name}_installer"
+  if ! array_contains _installers "${name}_installer"; then
+    log_header "install: $name"
+    source $path
+    log_info "done."
+
+    _installers+=("${name}_installer")
   else
     log_message "$name already installed. skipping..."
   fi

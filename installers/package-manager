@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source "${BASH_SOURCE%/*}/shared.sh"
+
 install_homebrew() {
   if ! which brew > /dev/null 2>&1; then
     log_info "installing homebrew..."
@@ -7,7 +9,7 @@ install_homebrew() {
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     brew update
   else
-    log_info "found brew installation. skipping..."
+    log_message "hombrew already installed. skipping..."
   fi
 }
 

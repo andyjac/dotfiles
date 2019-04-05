@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+source "${BASH_SOURCE%/*}/shared.sh"
+
+require_installer package-manager

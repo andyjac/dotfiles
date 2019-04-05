@@ -36,9 +36,9 @@ symlink_dotfile() {
     return 1
   fi
 
-  if [ $(file_exists $dest) == "t" ]; then
-    backup_existing_file $dest
-  fi
+  # if [ $(file_exists $dest) == "t" ]; then
+  #   backup_existing_file $dest
+  # fi
 
   if [ ! $(file_exists $dest) == "t" ]; then
     log_message "symlinking $full_file_path -> $dest"
