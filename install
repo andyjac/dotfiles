@@ -26,6 +26,7 @@ done
 
 # is_macos && ./macos.sh
 
+require_installer homebrew
 require_installer emacs
 require_installer zsh
 require_installer node
