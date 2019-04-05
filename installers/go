@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+source "${BASH_SOURCE%/*}/shared.sh"
+
+install_go() {
+  if ! which go; then
+    if [ ! -d ~/go ]; then
+      mkdir ~/go
+    fi
+
+    if [ ! -d ~/go/src/github.com/user ]; then
+      mkdir -p ~/go/src/github.com/user
+    fi
+
+    export GOPATH=$HOME/go
+    export GOROOT=/usr/local/opt/go/libexec
+    export PATH=$PATH:$GOPATH/bin
+    export PATH=$PATH:$GOROOT/bin
+
+    brew_install go
+  else
+    log_message "go already installed. skipping..."
+  fi
+}
+
+install_go_packages() {
+  if ! which go; then
+    install_go
+  fi
+
+  go get -u golang.org/x/tools/cmd/goimports
+  go get -u github.com/nsf/gocode
+  go get -u golang.org/x/tools/cmd/guru
+}
+
+install_go
+install_go_packages

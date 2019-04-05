@@ -24,12 +24,11 @@ while test $# -gt 0; do
   esac
 done
 
-# is_macos && ./macos.sh
-
 require_installer package-manager
 require_installer emacs
 require_installer zsh
 require_installer node
 require_installer devtools
+require_installer go
 
-log_success "dotfiles installation complete."
+log_success "complete."
