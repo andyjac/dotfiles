@@ -15,10 +15,8 @@ brew_install() {
 
   if brew list "$package" > /dev/null 2>&1; then
     log_package_not_needed $package
-    # log_message "$package already installed. skipping..."
   else
     log_install_package $package
-    # log_message "installing $package..."
     brew install $@ > /dev/null 2>&1
   fi
 }
