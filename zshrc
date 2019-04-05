@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/andrew/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -104,8 +104,12 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(pyenv init -)"
 
 # PATH
-export PATH="$PATH:/Users/andrew/.local/bin"
-# golang binaries
-export PATH="$PATH:/Users/andrew/go/bin"
+export PATH="$PATH:$HOME/.local/bin"
+
+# golang
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$GOROOT/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
