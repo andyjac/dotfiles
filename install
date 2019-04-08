@@ -24,6 +24,14 @@ while test $# -gt 0; do
 
       shift
       ;;
+    --only*)
+      name=`echo $1 | sed -e 's/^[^=]*=//g'`
+
+      require_installer $name
+      log_success "complete."
+
+      exit 0
+      ;;
     *)
       break
       ;;
@@ -36,5 +44,6 @@ require_installer zsh
 require_installer node
 require_installer devtools
 require_installer go
+require_installer fonts
 
 log_success "complete."
