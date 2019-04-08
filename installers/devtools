@@ -43,3 +43,6 @@ install_cquery
 
 # install fuzzy find history searcher
 brew_install fzf
+
+# install fasd: https://github.com/clvv/fasd
+brew_install fasd

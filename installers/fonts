@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+require_installer package-manager
+
 install_font() {
   local font=$1
 

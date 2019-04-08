@@ -10,7 +10,12 @@ while test $# -gt 0; do
       shift
       ;;
     --log-level*)
-      level=`echo $1 | sed -e 's/^[^=]*=//g'`
+      if [[ $1 =~ .*=.* ]]; then
+        level=`echo $1 | sed -e 's/^[^=]*=//g'`
+      else
+        level=$2
+        shift
+      fi
 
       if [[ $level -ge $ERROR ]] && [[ $level -le $DEBUG ]]; then
         LOG_LEVEL=$level
@@ -19,13 +24,24 @@ while test $# -gt 0; do
       shift
       ;;
     --without*)
-      name=`echo $1 | sed -e 's/^[^=]*=//g'`
+      if [[ $1 =~ .*=.* ]]; then
+        name=`echo $1 | sed -e 's/^[^=]*=//g'`
+      else
+        name=$2
+        shift
+      fi
+
       _excluded_installers+=("${name}_installer")
 
       shift
       ;;
     --only*)
-      name=`echo $1 | sed -e 's/^[^=]*=//g'`
+      if [[ $1 =~ .*=.* ]]; then
+        name=`echo $1 | sed -e 's/^[^=]*=//g'`
+      else
+        name=$2
+        shift
+      fi
 
       require_installer $name
       log_success "complete."
