@@ -14,7 +14,7 @@ brew_install() {
   ! is_macos && return 1
 
   if brew list "$package" > /dev/null 2>&1; then
-    log_package_not_needed $package
+    log_found_package $package
   else
     log_install_package $package
     brew install $@ > /dev/null 2>&1

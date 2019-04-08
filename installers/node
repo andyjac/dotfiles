@@ -18,7 +18,7 @@ install_nvm() {
     source_nvm
     nvm install stable
   else
-    log_package_not_needed "nvm"
+    log_found_package "nvm"
   fi
 }
 

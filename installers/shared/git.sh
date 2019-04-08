@@ -5,7 +5,7 @@ git_clone() {
   dest=$2
 
   if [ $(file_exists $dest) == "t" ]; then
-    log_package_not_needed $repo
+    log_found_package $repo
   else
     log_install_package $repo
     git clone repo $dest

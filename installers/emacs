@@ -11,7 +11,7 @@ if ! brew list emacs-plus > /dev/null 2>&1; then
   log_install_package "emacs-plus"
   brew_install emacs-plus --without-spacemacs-icon
 else
-  log_package_not_needed "emacs-plus"
+  log_found_package "emacs-plus"
 fi
 
 symlink_dotfile emacs.d ~/.emacs.d

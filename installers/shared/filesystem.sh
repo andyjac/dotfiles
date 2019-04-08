@@ -7,7 +7,7 @@ dotfiles_location() {
 }
 
 file_exists() {
-  file=$1
+  local file=$1
 
   if [ -e $file ]; then
     echo "t"
@@ -16,9 +16,15 @@ file_exists() {
   fi
 }
 
+command_exists() {
+  local name=$1
+
+  command -v "$name" > /dev/null 2>&1
+}
+
 backup_existing_file() {
-  file=$1
-  backup_file="$file.$(date +%s).old"
+  local file=$1
+  local backup_file="$file.$(date +%s).old"
 
   log_message "backing up $file -> $backup_file"
 
@@ -41,7 +47,7 @@ symlink_dotfile() {
   # fi
 
   if [ ! $(file_exists $dest) == "t" ]; then
-    log_message "symlinking $full_file_path -> $dest"
+    log_info "symlinking $full_file_path -> $dest"
     ln -s $full_file_path $dest
   fi
 }

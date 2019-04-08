@@ -51,7 +51,7 @@ log_install_package() {
   log_message "install: ${LIGHT_MAGENTA}${package}${RESET}"
 }
 
-log_package_not_needed() {
+log_found_package() {
   package=$1
 
   log_message "found package: ${LIGHT_MAGENTA}${package}${RESET}"
