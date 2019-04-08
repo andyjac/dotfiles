@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
 install_source_code_pro() {
-  brew_tap homebrew/cask-fonts
-  brew_install font-source-code-pro
+  if [ ! -d /usr/local/Caskroom/font-source-code-pro ]; then
+    brew_tap homebrew/cask-fonts
+    brew_install font-source-code-pro
+  else
+    log_found_package "font-source-code-pro"
+  fi
 }
 
 install_source_code_pro
