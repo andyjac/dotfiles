@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
-install_source_code_pro() {
-  if [ ! -d /usr/local/Caskroom/font-source-code-pro ]; then
+install_font() {
+  local font=$1
+
+  if [[ "$CHECKED_FOR_CASK_FONTS" != "t" ]]; then
     brew_tap homebrew/cask-fonts
-    brew_install font-source-code-pro
-  else
-    log_found_package "font-source-code-pro"
+    CHECKED_FOR_CASK_FONTS="t"
   fi
+
+  brew_cask_install $font
 }
 
-install_source_code_pro
+install_font font-source-code-pro
+install_font font-hack
