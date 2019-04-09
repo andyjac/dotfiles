@@ -27,38 +27,39 @@ ERROR=0
 LOG_LEVEL=${LOG_LEVEL-$INFO}
 
 log_message() {
-  message=$1
-  level=${2-$DEFAULT}
-  prefix=${3-"... "}
+  local message=$1
+  local level=${2-$DEFAULT}
+  local prefix=${3-"... "}
 
   echo -e "${level}${prefix}${message}${RESET}"
 }
 
 log_header() {
-  message=$1
+  local message=$1
 
   log_message "$message" "$CYAN" "==> "
 }
 
 log_success() {
-  message=$1
+  local message=$1
 
   log_message "$message" "$GREEN" "==> "
 }
 
 log_install_package() {
-  package=$1
+  local package=$1
+
   log_message "install: ${LIGHT_MAGENTA}${package}${RESET}"
 }
 
 log_found_package() {
-  package=$1
+  local package=$1
 
   log_message "found package: ${LIGHT_MAGENTA}${package}${RESET}"
 }
 
 log_debug() {
-  message=$1
+  local message=$1
 
   if [[ $LOG_LEVEL -ge $DEBUG ]]; then
     log_message "$message" "$LIGHT_BLUE"
@@ -66,7 +67,7 @@ log_debug() {
 }
 
 log_info() {
-  message=$1
+  local message=$1
 
   if [[ $LOG_LEVEL -ge $INFO ]]; then
     log_message "$message" "$LIGHT_CYAN"
@@ -74,7 +75,7 @@ log_info() {
 }
 
 log_warning() {
-  message=$1
+  local message=$1
 
   if [[ $LOG_LEVEL -ge $WARNING ]]; then
     log_message "$message" "$YELLOW"
@@ -82,7 +83,7 @@ log_warning() {
 }
 
 log_error() {
-  message=$1
+  local message=$1
 
   if [[ $LOG_LEVEL -ge $ERROR ]]; then
     log_message "$message" "$RED"
