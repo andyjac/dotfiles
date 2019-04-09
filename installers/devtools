@@ -9,7 +9,9 @@ packages=(
   cmake
   fzf
   fasd
+  llvm
   "--HEAD cquery"
+  "--HEAD ccls"
 )
 
 for package in "${packages[@]}"; do
