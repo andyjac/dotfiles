@@ -4,44 +4,14 @@ source "${BASH_SOURCE%/*}/shared.sh"
 
 require_installer package-manager
 
-# install cquery
-install_cquery() {
-  if ! command_exists cmake; then
-    brew_install cmake
-  fi
-
-  if ! command_exists cquery; then
-    log_install_package "cquery"
-
-    git clone --recursive https://github.com/cquery-project/cquery.git .cquery
-    pushd .cquery
-
-    git submodule update --init
-    mkdir build
-    pushd build
-
-    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
-    cmake --build .
-    sudo cmake --build . --target install
-
-    popd
-    popd
-
-    rm -rf .cquery
-  else
-    log_found_package "cquery"
-  fi
-}
-
 packages=(
   ag
   cmake
   fzf
   fasd
+  "--HEAD cquery"
 )
 
 for package in "${packages[@]}"; do
   brew_install $package
 done
-
-install_cquery
