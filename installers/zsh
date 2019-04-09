@@ -3,7 +3,7 @@
 source "${BASH_SOURCE%/*}/shared.sh"
 
 clone_oh_my_zsh() {
-  git_clone git@github.com:robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  git clone git@github.com:robbyrussell/oh-my-zsh.git ~/.oh-my-zsh > /dev/null 2>&1
 }
 
 clone_oh_my_zsh
