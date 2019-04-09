@@ -14,7 +14,7 @@ brew_tap() {
 }
 
 brew_install() {
-  local package=$1
+  local package=${*: -1}
 
   ! is_macos && return 1
 
@@ -27,7 +27,7 @@ brew_install() {
 }
 
 brew_cask_install() {
-  local package=$1
+  local package=${*: -1}
 
   ! is_macos && return 1
 
