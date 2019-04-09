@@ -8,6 +8,6 @@ git_clone() {
     log_found_package $repo
   else
     log_install_package $repo
-    git clone repo $dest
+    git clone $repo $dest
   fi
 }
