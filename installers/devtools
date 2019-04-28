@@ -12,6 +12,7 @@ packages=(
   llvm
   "--HEAD cquery"
   "--HEAD ccls"
+  direnv
 )
 
 for package in "${packages[@]}"; do

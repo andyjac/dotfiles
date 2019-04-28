@@ -4,22 +4,36 @@ source "${BASH_SOURCE%/*}/shared.sh"
 
 require_installer package-manager
 
-install_zlib() {
-  brew_install readline xz
-}
+install_python_versions() {
+  local python_2_version="2.7.16"
+  local python_3_version="3.7.3"
 
-install_pyenv() {
-  brew_install pyenv
-}
-
-install_python() {
   export LDFLAGS="-L/usr/local/opt/zlib/lib"
   export CPPFLAGS="-I/usr/local/opt/zlib/include"
 
-  pyenv install 3.7.3 > /dev/null 2>&1
-  pyenv install 2.7.16 > /dev/null 2>&1
+  if [ ! $(pyenv versions | grep -o $python_2_version) ]; then
+    log_install_package "python $python_2_version"
+    pyenv install $python_2_version > /dev/null 2>&1
+  else
+    log_found_package "python $python_2_version"
+  fi
+
+  if [ ! $(pyenv versions | grep -o $python_3_version) ]; then
+    log_install_package "python $python_3_version"
+    pyenv install $python_3_version > /dev/null 2>&1
+  else
+    log_found_package "python $python_3_version"
+  fi
 }
 
-install_zlib
-install_pyenv
-install_python
+dependencies=(
+  readline
+  xz
+)
+
+for dep in "${deps[@]}"; do
+  brew_install $dep
+done
+
+brew_install pyenv
+install_python_versions

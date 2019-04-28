@@ -7,22 +7,58 @@ require_installer package-manager
 source_nvm() {
   export NVM_DIR="$HOME/.nvm"
 
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 }
 
 install_nvm() {
+  local nvm_url="https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh"
+
   if [ ! -d ~/.nvm ]; then
     log_install_package "nvm"
 
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+    export NVM_DIR="$HOME/.nvm" && (
+      git_clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+      cd "$NVM_DIR"
+      git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)` > /dev/null 2>&1
+    ) && \. "$NVM_DIR/nvm.sh"
+
     source_nvm
-    nvm install --lts
-    nvm alias default lts/dubnium
   else
     log_found_package "nvm"
   fi
 }
 
+install_node() {
+  if ! command_exists node; then
+    log_install_package "node"
+    nvm install --lts > /dev/null 2>&1
+  else
+    log_found_package "node"
+  fi
+}
+
+yarn_global_add() {
+  local package=$1
+
+  if ! command_exists $package; then
+    log_install_package $package
+    yarn global add $package > /dev/null 2>&1
+  else
+    log_found_package $package
+  fi
+}
+
+npm_globals=(
+  tern
+  http-server
+  create-react-app
+  lerna
+)
+
 install_nvm
-source_nvm
+install_node
 brew_install yarn
+
+for package in "${npm_globals[@]}"; do
+  yarn_global_add $package
+done

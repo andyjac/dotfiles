@@ -116,3 +116,6 @@ export PATH="$PATH:$GOROOT/bin"
 
 # fasd
 eval "$(fasd --init auto)"
+
+# direnv
+eval "$(direnv hook zsh)"

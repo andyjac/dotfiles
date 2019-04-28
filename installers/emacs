@@ -4,14 +4,5 @@ source "${BASH_SOURCE%/*}/shared.sh"
 
 require_installer package-manager
 
-if ! brew list emacs-plus > /dev/null 2>&1; then
-  # install emacs-plus: https://github.com/d12frosted/homebrew-emacs-plus
-  brew_tap d12frosted/emacs-plus
-
-  log_install_package "emacs-plus"
-  brew_install emacs-plus --without-spacemacs-icon
-else
-  log_found_package "emacs-plus"
-fi
-
+brew_install --without-spacemacs-icon emacs-plus
 symlink_dotfile emacs.d ~/.emacs.d

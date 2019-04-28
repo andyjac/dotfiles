@@ -46,16 +46,23 @@ log_success() {
   log_message "$message" "$GREEN" "==> "
 }
 
+log_action_message() {
+  local action=$1
+  local payload=$2
+
+  log_message "${action}: ${LIGHT_MAGENTA}${payload}${RESET}"
+}
+
 log_install_package() {
   local package=$1
 
-  log_message "install: ${LIGHT_MAGENTA}${package}${RESET}"
+  log_action_message "install" $package
 }
 
 log_found_package() {
   local package=$1
 
-  log_message "found package: ${LIGHT_MAGENTA}${package}${RESET}"
+  log_action_message "found packcage" $package
 }
 
 log_debug() {

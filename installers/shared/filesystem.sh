@@ -26,7 +26,7 @@ backup_existing_file() {
   local file=$1
   local backup_file="$file.$(date +%s).old"
 
-  log_message "backing up $file -> $backup_file"
+  log_action_message "backup" $backup_file
 
   cp -R -L $file $backup_file
   rm -rf $file
@@ -47,7 +47,9 @@ symlink_dotfile() {
   # fi
 
   if [ ! $(file_exists $dest) == "t" ]; then
-    log_info "symlinking $full_file_path -> $dest"
+    log_action_message "symlink" "$full_file_path -> $dest"
     ln -s $full_file_path $dest
+  else
+    log_action_message "found file" $dest
   fi
 }
