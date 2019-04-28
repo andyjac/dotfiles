@@ -2,5 +2,10 @@
 
 source "${BASH_SOURCE%/*}/shared.sh"
 
+# clone oh-my-zsh
 git_clone git@github.com:robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+# symlink zsh files
 symlink_dotfile zshrc ~/.zshrc
+symlink_dotfile zsh ~/.zsh
+symlink_dotfile zsh/zshenv ~/.zshenv

@@ -94,28 +94,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/dotfiles/alias.sh
+## custom
+for file in $HOME/.zsh/custom/**/*.zsh
+do
+  source $file
+done
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+## plugins
+for file in $HOME/.zsh/plugins/**/*.zsh
+do
+  source $file
+done
 
-# initialize pyenv
-eval "$(pyenv init -)"
-
-# PATH
-export PATH="$PATH:$HOME/.local/bin"
-
-# golang
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:$GOROOT/bin"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# fasd
-eval "$(fasd --init auto)"
-
-# direnv
-eval "$(direnv hook zsh)"
+## secrets
+for file in $HOME/.zsh/secrets/**/*.zsh
+do
+  source $file
+done
