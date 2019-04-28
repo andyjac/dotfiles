@@ -101,13 +101,13 @@ do
 done
 
 ## plugins
-for file in $HOME/.zsh/plugins/**/*.zsh
-do
-  source $file
-done
+# for file in $HOME/.zsh/plugins/**/*.zsh
+# do
+#   source $file
+# done
 
 ## secrets
-for file in $HOME/.zsh/secrets/**/*.zsh
-do
-  source $file
-done
+# for file in $HOME/.zsh/secrets/**/*.zsh
+# do
+#   source $file
+# done
