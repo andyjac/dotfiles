@@ -40,7 +40,7 @@ install_node() {
 yarn_global_add() {
   local package=$1
 
-  if ! command_exists $package; then
+  if [[ ! $(yarn global list | grep -o $package) ]]; then
     log_install_package $package
     yarn global add $package > /dev/null 2>&1
   else
@@ -53,10 +53,15 @@ npm_globals=(
   http-server
   create-react-app
   lerna
+  typescript
+  tslint
+  eslint
 )
 
 install_nvm
 install_node
+
+# install yarn: https://yarnpkg.com/en/
 brew_install yarn
 
 for package in "${npm_globals[@]}"; do
