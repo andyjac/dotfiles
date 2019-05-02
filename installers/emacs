@@ -4,5 +4,12 @@ source "${BASH_SOURCE%/*}/shared.sh"
 
 require_installer package-manager
 
+# install emacs package (osx)
 brew_install --without-spacemacs-icon emacs-plus
+
+# install emacs package (linux)
+apt_update
+apt_install emacs26
+
+# symlink config file
 symlink_dotfile emacs.d ~/.emacs.d

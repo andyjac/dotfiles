@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 brew_tap() {
-  local tap=$1
-
   ! is_macos && return 1
+
+  local tap=$1
 
   if brew tap | grep "$tap" > /dev/null 2>&1; then
     log_found_package $tap
@@ -14,9 +14,9 @@ brew_tap() {
 }
 
 brew_install() {
-  local package=${*: -1}
-
   ! is_macos && return 1
+
+  local package=${*: -1}
 
   if brew list "$package" > /dev/null 2>&1; then
     log_found_package $package
@@ -27,9 +27,9 @@ brew_install() {
 }
 
 brew_cask_install() {
-  local package=${*: -1}
-
   ! is_macos && return 1
+
+  local package=${*: -1}
 
   if brew cask list "$package" > /dev/null 2>&1; then
     log_found_package $package

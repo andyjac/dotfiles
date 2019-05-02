@@ -14,12 +14,32 @@ install_go() {
       mkdir -p ~/go/src/github.com/user
     fi
 
-    export GOPATH=$HOME/go
-    export GOROOT=/usr/local/opt/go/libexec
-    export PATH=$PATH:$GOPATH/bin
-    export PATH=$PATH:$GOROOT/bin
+    if is_macos; then
+      export GOROOT=/usr/local/opt/go/libexec
+    else
+      export GOROOT=/usr/local/go
+    fi
 
-    brew_install go
+    export GOPATH=$HOME/go
+    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+    if is_macos; then
+      brew_install go
+    fi
+
+    if is_linux; then
+      GO_VERSION="1.12.2"
+
+      log_install_package "go"
+
+      apt_update
+      wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz
+      sudo tar -xvf go$GO_VERSION.linux-amd64.tar.gz
+      sudo mv go /usr/local
+      rm -rf go$GO_VERSION.linux-amd64.tar.gz
+
+      sudo ln -s /usr/local/go/bin/* /usr/local/bin/
+    fi
   else
     log_found_package "go"
   fi

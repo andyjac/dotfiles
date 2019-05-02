@@ -16,12 +16,6 @@ file_exists() {
   fi
 }
 
-command_exists() {
-  local name=$1
-
-  command -v "$name" > /dev/null 2>&1
-}
-
 backup_existing_file() {
   local file=$1
   local backup_file="$file.$(date +%s).old"

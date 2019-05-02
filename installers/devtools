@@ -4,20 +4,49 @@ source "${BASH_SOURCE%/*}/shared.sh"
 
 require_installer package-manager
 
-packages=(
+osx_tools=(
   ag
-  cmake
   fzf
   fasd
-  llvm
+  direnv
   "--HEAD cquery"
   "--HEAD ccls"
-  direnv
 )
 
-for package in "${packages[@]}"; do
+linux_tools=(
+  make
+  build-essential
+  libssl-dev
+  zlib1g-dev
+  libbz2-dev
+  libreadline-dev
+  libsqlite3-dev
+  wget
+  curl
+  libncurses5-dev
+  xz-utils
+  tk-dev
+  silversearcher-ag
+)
+
+shared_tools=(
+  cmake
+  llvm
+)
+
+for package in "${linux_tools[@]}"; do
+  apt_install "$package"
+done
+
+for package in "${osx_tools[@]}"; do
   brew_install $package
 done
 
-# install fzf keybindings
-$(brew --prefix)/opt/fzf/install
+for package in "${shared_tools[@]}"; do
+  install_package $package
+done
+
+if is_macos; then
+  # install fzf keybindings
+  $(brew --prefix)/opt/fzf/install
+fi

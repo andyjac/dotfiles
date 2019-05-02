@@ -85,7 +85,7 @@ log_warning() {
   local message=$1
 
   if [[ $LOG_LEVEL -ge $WARNING ]]; then
-    log_message "$message" "$YELLOW"
+    log_message "warning: $message" "$YELLOW"
   fi
 }
 
@@ -93,6 +93,6 @@ log_error() {
   local message=$1
 
   if [[ $LOG_LEVEL -ge $ERROR ]]; then
-    log_message "$message" "$RED"
+    log_message "error: $message" "$RED"
   fi
 }

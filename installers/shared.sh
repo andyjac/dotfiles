@@ -10,6 +10,8 @@ then
   source "$shared_dir/log.sh"
   source "$shared_dir/filesystem.sh"
   source "$shared_dir/git.sh"
+  source "$shared_dir/apt.sh"
+  source "$shared_dir/packages.sh"
 
   SOURCED_SHARED_DOTFILES="t"
 fi

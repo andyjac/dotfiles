@@ -13,4 +13,14 @@ install_homebrew() {
   fi
 }
 
-install_homebrew
+install_aptitude() {
+  apt_install aptitude
+}
+
+if is_macos; then
+  install_homebrew
+elif is_linux; then
+  install_aptitude
+else
+  log_error "unknown system"
+fi

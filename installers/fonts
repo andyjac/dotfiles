@@ -3,6 +3,8 @@
 require_installer package-manager
 
 install_font() {
+  ! is_macos && return 1
+
   local font=$1
 
   if [[ "$CHECKED_FOR_CASK_FONTS" != "t" ]]; then
