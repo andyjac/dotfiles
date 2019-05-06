@@ -34,6 +34,8 @@ shared_tools=(
   llvm
 )
 
+apt_update
+
 for package in "${linux_tools[@]}"; do
   apt_install "$package"
 done

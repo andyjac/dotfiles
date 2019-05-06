@@ -18,3 +18,5 @@ alias mesabuild='make clean_images && export DEV_STATIC=true && time make wipe c
 
 # print aws creds
 alias awsprint='cat ~/.aws/credentials'
+
+alias datasetdetails-local='http://localhost:3000/ux/dataset-details?exportId=2&systemName=35.163.132.140&exportName=/home/nfs/oldmiss2'

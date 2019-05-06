@@ -2,6 +2,7 @@
 
 source "${BASH_SOURCE%/*}/installers/shared.sh"
 
+# parse the valud after `=` for `--flag=value`
 parse_flag_after_equals() {
   echo `echo $1 | sed -e 's/^[^=]*=//g'`
 }
@@ -14,8 +15,10 @@ while test $# -gt 0; do
       shift
       ;;
     --log-level*)
+      # if the flag was set with: `--flag=value`
       if [[ $1 =~ .*=.* ]]; then
         level=$(parse_flag_after_equals $1)
+      # otherwise, expect: `--flag value`
       else
         level=$2
         shift

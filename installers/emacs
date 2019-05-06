@@ -8,8 +8,12 @@ require_installer package-manager
 brew_install --without-spacemacs-icon emacs-plus
 
 # install emacs package (linux)
-apt_update
-apt_install emacs26
+if is_linux; then
+  sudo add-apt-repository -y ppa:kelleyk/emacs > /dev/null 2>&1
+  apt_update
+
+  apt_install emacs26
+fi
 
 # symlink config file
 symlink_dotfile emacs.d ~/.emacs.d

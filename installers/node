@@ -31,6 +31,7 @@ install_nvm() {
 
 install_node() {
   if is_linux; then
+    mkdir -p $HOME/.config
     sudo chown -R $USER:$(id -gn $USER) $HOME/.config
   fi
 

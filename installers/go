@@ -33,8 +33,8 @@ install_go() {
       log_install_package "go"
 
       apt_update
-      wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz
-      sudo tar -xvf go$GO_VERSION.linux-amd64.tar.gz
+      wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz > /dev/null 2>&1
+      sudo tar -xvf go$GO_VERSION.linux-amd64.tar.gz > /dev/null 2>&1
       sudo mv go /usr/local
       rm -rf go$GO_VERSION.linux-amd64.tar.gz
 

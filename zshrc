@@ -95,19 +95,19 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 ## custom
-for file in $HOME/.zsh/custom/**/*.zsh
+for file in $HOME/.zsh/custom/*.zsh
 do
   source $file
 done
 
 ## plugins
-# for file in $HOME/.zsh/plugins/**/*.zsh
+# for file in $HOME/.zsh/plugins/*.zsh
 # do
 #   source $file
 # done
 
 ## secrets
-# for file in $HOME/.zsh/secrets/**/*.zsh
+# for file in $HOME/.zsh/secrets/*.zsh
 # do
 #   source $file
 # done
