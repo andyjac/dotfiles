@@ -4,15 +4,47 @@ source "${BASH_SOURCE%/*}/shared.sh"
 
 require_installer package-manager
 
-# install emacs package (osx)
+# install emacs (osx)
 brew_install --without-spacemacs-icon emacs-plus
 
-# install emacs package (linux)
+# install emacs (linux)
 if is_linux; then
   sudo add-apt-repository -y ppa:kelleyk/emacs > /dev/null 2>&1
-  apt_update
 
-  apt_install emacs26
+  if [ $(sudo apt-cache search --names-only emacs26) ]; then
+    apt_install emacs26
+  else
+    if ! command_exists emacs; then
+      log_install_package "emacs"
+
+      # emacs deps when building from source
+      dependencies=(
+        glade
+        libncurses-dev
+        libXpm-dev
+        libjpeg-dev
+        libgif-dev
+        libtiff-dev
+      )
+
+      for dep in "${dependencies[@]}"; do
+        apt_install $dep
+      done
+
+      EMACS_VERSION="26.2"
+
+      wget http://mirrors.syringanetworks.net/gnu/emacs/emacs-$EMACS_VERSION.tar.gz > /dev/null 2>&1
+      tar -xzvf emacs-$EMACS_VERSION.tar.gz > /dev/null 2>&1
+
+      pushd emacs-$EMACS_VERSION
+      ./configure > /dev/null 2>&1
+      make > /dev/null 2>&1
+      sudo make install > /dev/null 2>&1
+
+      popd && rm -rf emacs-$EMACS_VERSION*
+    else
+      log_found_package "emacs"
+  fi
 fi
 
 # symlink config file
