@@ -112,4 +112,6 @@ done
 #   source $file
 # done
 
+source ~/.zsh_custom
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
