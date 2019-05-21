@@ -10,12 +10,16 @@ brew_install --without-spacemacs-icon emacs-plus
 # install emacs (linux)
 if is_linux; then
   sudo add-apt-repository -y ppa:kelleyk/emacs > /dev/null 2>&1
+  apt_update
 
   if [ $(sudo apt-cache search --names-only emacs26) ]; then
+    # try to install emacs26 with apt
     apt_install emacs26
   else
+    # otherwise, build from source
     if ! command_exists emacs; then
-      log_install_package "emacs"
+      log_info "could not find emacs apt package. building from source..."
+      EMACS_VERSION="26.2"
 
       # emacs deps when building from source
       dependencies=(
@@ -31,19 +35,27 @@ if is_linux; then
         apt_install $dep
       done
 
-      EMACS_VERSION="26.2"
-
+      log_action_message "download" "http://mirrors.syringanetworks.net/gnu/emacs/emacs-$EMACS_VERSION.tar.gz"
       wget http://mirrors.syringanetworks.net/gnu/emacs/emacs-$EMACS_VERSION.tar.gz > /dev/null 2>&1
+
+      log_action_message "untar" "emacs-$EMACS_VERSION.tar.gz"
       tar -xzvf emacs-$EMACS_VERSION.tar.gz > /dev/null 2>&1
 
-      pushd emacs-$EMACS_VERSION
-      ./configure > /dev/null 2>&1
+      pushd emacs-$EMACS_VERSION > /dev/null 2>&1
+
+      log_action_message "run" "./configure"
+      ./configure >  /dev/null 2>&1
+
+      log_action_message "run" "make"
       make > /dev/null 2>&1
+
+      log_action_message "run" "sudo make install"
       sudo make install > /dev/null 2>&1
 
-      popd && rm -rf emacs-$EMACS_VERSION*
+      popd > /dev/null 2>&1 && rm -rf emacs-$EMACS_VERSION* > /dev/null 2>&1
     else
       log_found_package "emacs"
+    fi
   fi
 fi
 
