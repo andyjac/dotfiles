@@ -166,9 +166,9 @@ Find.Find...</string>
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame ProfilesPanel</key>
-	<string>219 611 735 382 0 0 1920 1057 </string>
+	<string>219 611 735 382 0 0 1920 1080 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>212 300 796 486 0 0 1680 1027 </string>
+	<string>270 271 937 514 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1920 1080 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -789,6 +789,8 @@ Find.Find...</string>
 				<key>Red Component</key>
 				<real>0.70980000495910645</real>
 			</dict>
+			<key>Send Bell Alert</key>
+			<false/>
 			<key>Send Code When Idle</key>
 			<false/>
 			<key>Shortcut</key>
@@ -816,7 +818,7 @@ Find.Find...</string>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
-			<true/>
+			<false/>
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
@@ -887,7 +889,7 @@ Find.Find...</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-05-03T19:29:23Z</date>
+	<date>2019-05-16T22:13:51Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>
