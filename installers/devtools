@@ -32,6 +32,7 @@ linux_tools=(
 shared_tools=(
   cmake
   llvm
+  markdown
 )
 
 apt_update

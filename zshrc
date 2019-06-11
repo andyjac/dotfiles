@@ -112,6 +112,10 @@ done
 #   source $file
 # done
 
-source ~/.zsh_custom
+if [ -f ~/.zsh_custom ]; then
+  source ~/.zsh_custom
+else
+  echo "no such file: ~/.zsh_custom"
+fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
